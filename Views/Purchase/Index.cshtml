@@ -1,0 +1,209 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using CA_Team5.Data
+@model PurchaseHistory
+@{
+    ViewBag.Title = "Purchase History";
+ 
+   
+}
+@{
+    var user = (User)ViewData["user"];
+
+    var product = ViewData["products"];
+
+}
+
+
+
+
+
+@{
+    var purchasehistory = (List<PurchaseHistory>)ViewData["PurchaseHistory"];
+    var distinctproduct = (List<Product>)ViewData["DistinctProducts"];
+}
+
+
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3  ">
+            <div class="container-fluid">
+                <h3>My Purchases</h3>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="purchasecontainer" style="text-align:center;  display:flex; justify-content:center;">
+    <div class="purchases-product" style="text-align:center; " >
+
+          @if (purchasehistory.Count==0)
+        {
+            @:You have not purchased any products.
+        }
+        else
+        {
+            @foreach (var p in distinctproduct)
+            {
+                <div class="productcard d-flex"  style="box-shadow: 0 0 15px rgba(0,0,0,0.2); margin:8px; width:800px; ">
+                    <div class=" right" style="padding: 10px; width: 35rem; ">
+                    <div style="text-align: center;"> <img class="center" src="@p.Image" width="200" height="200" /></div>
+                   
+                        <h5 class="card-title">@p.ProductName</h5>
+                        <h8 class="card-text" style="height: 25px;">@p.Description</h8>
+                      <p><button type="button" class="btn btn-secondary" style="flex-grow:1; color:white;">Download</button></p> 
+                    </div>
+                    
+                    <div class="purchase-details "  style="padding: 30px; width: 30rem; padding-top:50px; ">
+
+                        
+                        <p>Quantity: @PurchaseData.CountProduct(p.ProductId,user.UserId)</p>
+                        
+                        @if (PurchaseData.CountProduct(p.ProductId,user.UserId) > 1)
+                        {
+                            <div class="pl-1">
+                                <label for="Activation">Activation Codes:</label>
+
+                                <p>
+                                    <select name="Activation" id="Activation">
+                                        @foreach (var item in PurchaseData.GetAccountActivationCodes(user.UserId, p.ProductId))
+                                        {
+                                            <option value="Activation">@item</option>
+                                        }
+                                    </select>
+                                </p>
+                            </div> <label for="Dates">Date Purchased:</label>
+
+                            <p>
+                                <select name="Dates" id="Dates">
+                                    @foreach (var item in PurchaseData.GetDateofPurchase(user.UserId, p.ProductId))
+                                    {
+                                        <option value="date">@item</option>
+                                    }
+                                </select>
+                            </p>
+                        }
+                        @if (PurchaseData.CountProduct(p.ProductId,user.UserId) == 1)
+                        {
+                            <div class="pl-1">
+                                <label for="Activation">Activation Code:</label>
+
+
+                                <p name="Activation" id="Activation">
+                                    @foreach (var item in PurchaseData.GetAccountActivationCodes(user.UserId, p.ProductId))
+                                    {
+                                        <option value="Activation">@item</option>
+                                    }
+                                </p>
+                            </div> <label for="Dates">Date Purchased:</label>
+
+                            <p name="Dates" id="Dates">
+                                @foreach (var item in PurchaseData.GetDateofPurchase(user.UserId, p.ProductId))
+                                {
+                                    <option value="date">@item</option>
+                                }
+                            </p>
+                         }
+                            @{int rate = RatingData.GetRate(user.UserId, p.ProductName);}
+                    
+
+                            @switch (rate)
+                            {
+                                case 1:
+                                    <div class="rating">
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/1"></i>
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/2"></i>
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/3"></i>
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/4"></i>
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/5"></i>
+                                    </div>
+                                    break;
+                                case 2:
+                                    <div class="rating">
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/1"></i>
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/2"></i>
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/3"></i>
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/4"></i>
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/5"></i>
+                                    </div>
+                                    break;
+                                case 3:
+                                    <div class="rating">
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/1"></i>
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/2"></i>
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/3"></i>
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/4"></i>
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/5"></i>
+                                    </div>
+                                    break;
+                                case 4:
+                                    <div class="rating">
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/1"></i>
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/2"></i>
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/3"></i>
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/4"></i>
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/5"></i>
+                                    </div>
+                                    break;
+
+                                case 5:
+                                    <div class="rating">
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/1"></i>
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/2"></i>
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/3"></i>
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/4"></i>
+                                        <i class="ratings_stars fa fa-star selected" id="@p.ProductName/5"></i>
+                                    </div>
+                                    break;
+                                default:
+                                    <div class="rating">
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/1"></i>
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/2"></i>
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/3"></i>
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/4"></i>
+                                        <i class="ratings_stars fa fa-star" id="@p.ProductName/5"></i>
+
+                                    </div>
+                                    break;
+                            }
+                            <br>
+                            <br>
+                        </div>
+                       
+                        
+                        
+
+
+                    </div>
+                         <br />
+
+                        <br />
+
+                }
+           }
+                <br />
+
+         <br />
+
+ </div>
+ </div>
+
+   
+
+<script> $('.rating').on('click', '.ratings_stars', function () {
+        var star = $(this)
+        star.addClass('selected')
+        star.prevAll().addClass('selected')
+        star.nextAll().removeClass('selected')
+        $('#rating').val(star.data('rating'))
+
+    });
+
+    </script>

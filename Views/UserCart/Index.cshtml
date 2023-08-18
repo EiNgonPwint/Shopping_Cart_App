@@ -1,0 +1,401 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var cart = (List<Cart>)ViewData["cartlist"];
+    var a = 0;
+    var userId = (int)ViewData["userId"];
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Cart</title>
+    <link rel="stylesheet" href="~/css/cart.css" asp-append-version="true" />
+
+    <script>// Execute a JavaScript immediately after a page has been loaded:
+        //window.onload = function () {
+            //var selectAll = document.getElementById("selectAll");
+            //var inputs = document.querySelectorAll(".main input");
+            //var trs = document.querySelectorAll(".main tr");
+            //var selected = document.getElementById("selected");
+            //var selectedNum = 0;			// selected number
+
+
+            // select all of the production
+
+            //selectAll.onclick = function () {
+                //for (var i = 0; i < inputs.length; i++) {
+                    // set the input as selected
+                //    inputs[i].checked = this.checked;
+                //    trs[i].className = this.checked ? 'active' : '';
+
+                //    selectedNum = this.checked ? inputs.length : 0;
+                //}//
+                // innerHTML: change the HTML content of selected
+            //    selected.innerHTML = 'Selected (' + selectedNum + ')';
+            //};
+
+
+            //// select one
+            //for (var i = 0; i < inputs.length; i++) {
+            //    @*inputs[i].index = i;
+            //    inputs[i].onclick = function () {
+            //        trs[this.index].className = this.checked ? 'active' : '';
+            //        this.checked ? selectedNum++ : selectedNum--;
+            //        selected.innerHTML = 'Selected（' + selectedNum + '）';
+            //        selectAll.checked = SelectedNum == inputs.length ? true : false;
+            //    };*@
+            //}
+
+
+            //// color function
+            //var colorBtns = document.querySelectorAll(".color a");
+            //var colorCons = document.querySelectorAll(".color div");
+            //var bigImgs = document.querySelectorAll("label img");
+
+            //for (var i = 0; i < colorBtns.length; i++) {
+            //    colorBtns[i].index = i;
+            //    colorBtns[i].onclick = function () {
+            //        changeColor(this.index);
+            //    };
+            //}
+
+            //function changeColor(n) {
+            //    //click hide or open
+            //    var dis = colorCons[n].style.display;
+            //    colorCons[n].style.display = dis == 'block' ? 'none' : 'block';
+
+            //    //operation to get the inner function
+            //    var dt = colorCons[n].querySelector('dt');
+            //    var dds = colorCons[n].querySelectorAll('dd');
+            //    var imgs = colorCons[n].querySelectorAll('img');
+            //    var curImgSrc = imgs[0].src;
+            //    var sureBtn = colorCons[n].querySelector('span');
+
+            //    for (var i = 0; i < dds.length; i++) {
+            //        dds[i].index = i;
+            //        dds[i].onclick = function () {
+
+            //            for (var i = 0; i < dds.length; i++) {
+            //                dds[i].className = '';
+            //            }
+            //            this.className = 'active';
+
+            //            dt.innerHTML = imgs[this.index].alt;
+            //            curImgSrc = imgs[this.index].src;
+            //        };
+            //    }
+
+
+            //    //click checkout
+            //    sureBtn.onclick = function () {
+
+            //        colorCons[n].style.display = 'none';
+            //        colorBtns[n].innerHTML = dt.innerHTML + '+';
+            //        bigImgs[n].src = curImgSrc;
+            //    };
+            //}
+
+
+            ////Product add or remove
+            //for (var i = 0; i < trs.length; i++) {
+            //    count(i);
+            //}
+
+            //function count(n) {
+            //    // td:nth-of-type(4) choose the 4th of td in same tr
+            //    var spans = trs[n].querySelectorAll('td:nth-of-type(4) span');
+            //    var strong = trs[n].querySelector('td:nth-of-type(4) strong');
+            //    var price = trs[n].querySelector('td:nth-of-type(3)');
+            //    var subTotal = trs[n].querySelector('td:nth-of-type(5)');
+
+            //    var num = 0;		//number of selected item
+            //    //add function
+            //    spans[1].onclick = function () {
+
+            //        num++;
+            //        strong.innerHTML = num;
+
+            //        // price.innerHTML.substring(1), parse $xxx to xxx
+            //        subTotal.innerHTML = '$' + parseFloat(price.innerHTML.substring(1)) * num + '.00';
+            //        sum();
+            //    };
+
+
+            //    //remove function
+            //    spans[0].onclick = function () {
+            //        num--;
+            //        if (num < 0) {
+            //            num = 0;
+            //        }
+
+            //        strong.innerHTML = num;
+            //        subTotal.innerHTML = '$' + parseFloat(price.innerHTML.substring(1)) * num + '.00';
+
+            //        sum();
+
+            //    };
+            //}
+
+            ////sum function
+            //function sum() {
+            //    var td = document.querySelectorAll("tfoot td")[1];
+            //    var total = 0;			//totoal
+
+            //    for (var i = 0; i < trs.length; i++) {
+            //        var subTotal = trs[i].querySelector('td:nth-of-type(5)').innerHTML;
+            //        total += parseFloat(subTotal.substring(1));
+            //    }
+
+            //    td.innerHTML = "<p>Total: <strong> $" + total + ".00</strong></p>";
+            //}
+        };</script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <h3>View Cart</h3>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Continue Shopping</a>
+                        </li>
+                        <li class="nav-item">
+                            @*<a class="nav-link text-dark" asp-area="" asp-controller="Purchase" asp-action="Index">Checkout</a>*@
+
+                    </ul>
+                    @if (userId != 0)
+                    {
+                        <ul class="nav-item">
+                            @Html.ActionLink("Checkout", "Index", "Purchase", new { userId = userId }, null)
+                        </ul>}
+                    @if (userId == 0)
+                    {
+                        @Html.ActionLink("Checkout", "Index", "Login", new {userId=userId})
+                    }
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section id="shopping">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr colspan="7" class="space"></tr>
+            </tbody>
+            <tbody id="itemlist">
+                @{
+                    foreach (var c in cart)
+                    {
+                        <tr>
+                            
+                            <td>
+                                <label for="single"><img src="@Url.Content("~/"+ c.Image) " /></label>
+                            </td>
+                            <td>
+                                <p>@c.ProductName</p>
+                            </td>
+                            <td>
+                                <p>@c.Description</p>
+                            </td>
+                            <td class="price" id="@c.ProductId">
+                                $ @c.UnitPrice
+                            </td>
+                            <td>
+                                <button type="button" class="RemovefmCartBtn" id="@c.ProductId">-</button>
+                                <span class="qty" id="@c.ProductId">@c.Qty</span>
+                                <button type="button" class="AddtoCartBtn" id="@c.ProductId">+</button>
+                            </td>
+                            <td class="subtotal" id="@c.ProductId">$@(@c.UnitPrice * @c.Qty)</td>
+                        </tr>
+                        a = a + @c.UnitPrice * @c.Qty;
+                    }
+                }
+            </tbody>
+            <tbody>
+                <tr colspan="7" class="space"></tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td id="selected" hidden></td>
+                    <td colspan="6">
+                        <p><b>Total:&nbsp;&nbsp;</b><strong id="totalcost">$@a</strong></p>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script>
+        GetCount();
+        function AddTo(productId) {
+            //let ajax = new XMLHttpRequest();
+
+            // need to recreate ajax object for each request (cannot re-use)
+            //ajax.open("POST", "/Home/AddToCart");
+        @*ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");*@
+
+                //ajax.onreadystatechange = function (data) {
+
+
+                // color string returned from server
+
+                //           console.log(data);
+
+                //return this.responseText;
+
+
+                //}
+
+                // key-value pairs
+                //ajax.send("productId=" + productId);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/AddToCart?productId=" + productId,
+
+                    contentType: "application/json; charset=utf-8",
+
+                    success: function (response) {
+                        $("#cart_count").empty().text(response);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+        }
+
+        function RemoveFrom(productId) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/RemoveFromCart?productId=" + productId,
+
+                    contentType: "application/json; charset=utf-8",
+
+                    success: function (response) {
+                        $("#cart_count").empty().text(response);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+        }
+
+        function GetCount() {
+            $.ajax({
+                type: "GET",
+                url: "/Home/GetCount",
+
+                contentType: "application/json; charset=utf-8",
+
+                success: function (response) {
+                    $("#cart_count").empty().text(response);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+
+         function GetProductQty(productId) {
+                $.ajax({
+                    type: "GET",
+                url: "/Home/GetProductQty?productId=" + productId,
+
+                    contentType: "application/json; charset=utf-8",
+
+                success: function (response) {
+                    $("#" + productId + ".qty").empty().text(response);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+
+        }
+
+        function IncreaseQty(productId) {
+            var qty = 0
+            var a = 0
+            qty = parseInt(document.querySelector(`#${CSS.escape(productId)}` + ".qty").innerText)
+            a = ++qty;
+            document.querySelector(`#${CSS.escape(productId)}` + ".qty").innerText = a.toString()
+        }
+
+        function DecreaseQty(productId) {
+            var qty = 0
+            var a = 0
+            qty = parseInt(document.querySelector(`#${CSS.escape(productId)}` + ".qty").innerText)
+            if (qty > 0) { 
+                a = --qty;
+
+                if (a == 0)
+                {
+                    document.querySelector(`#${CSS.escape(productId)}` + ".qty").parentElement.parentElement.remove()
+                    TotalCost();
+                }
+
+                document.querySelector(`#${CSS.escape(productId)}` + ".qty").innerText = a.toString()
+            }
+        }
+
+        function Subtotal(productId) {
+            var subtotal = 0
+            var price = 0
+            var qty = 0
+            qty = parseInt(document.querySelector(`#${CSS.escape(productId)}` + ".qty").innerText)
+            price = parseInt(document.querySelector(`#${CSS.escape(productId)}` + ".price").innerText.replace('$',''))
+            subtotal = price*qty
+            document.querySelector(`#${CSS.escape(productId)}` + ".subtotal").innerText = '$' + subtotal.toString()
+        }
+        function TotalCost() {
+            var total = 0
+
+            for (var i = 0; i < document.getElementById("itemlist").rows.length; i++) {
+                var t = document.getElementById("itemlist"),
+                    d = t.getElementsByTagName("tr")[i],
+                    r = d.getElementsByTagName("td")[5];
+
+                var subTotal = parseInt(r.innerText.replace('$', ''));
+                total += subTotal;
+            }
+            document.getElementById("totalcost").innerText = '$' + total.toString()
+        }
+
+    </script>
+</body>
+</html>
+

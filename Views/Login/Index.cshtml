@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var errormessage = (string)ViewData["errormessage"];
+   
+}
+
+<div class="container " style="padding:5rem;" >
+
+    <div class="loginform" style="text-align:center; background-color:#212529  ; color:white; width:30rem; height:30rem; padding-top:5rem; border-radius:15px; margin: auto;">
+        <h1> <i class="fa-solid fa-lock" style="color:white"></i></h1>
+        <h2 =>Welcome! Please Log In.</h2>
+        <form action="/Login/Login" method="POST">
+            <table align="center">
+                <tr>
+                    <div class="alert-danger">@errormessage</div>
+                    <td>
+                <h4><label>User Name: </label></h4>
+                </td>
+            <td>
+                <input type="text" placeholder="User Name" name="username" required>
+            </td>
+        </tr>
+        <tr >
+            <td>
+                 <h4><label>Password:</label></h4>
+                </td>
+                <td><input type="password" placeholder="Password" name="password" required>
+                </td></tr>
+    </table>
+    <br></br>
+    <button type="submit" class="btn btn-light" value="Login" style="width:20rem;"><strong>LOGIN</strong></button>
+ </form>
+ </div>
+ </div>
+
+

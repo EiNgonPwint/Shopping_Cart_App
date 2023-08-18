@@ -1,0 +1,86 @@
+﻿<Properties StartupConfiguration="{4A03BCF1-23CD-4B0B-9143-E3E07635647A}|Default">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Home/Search.cshtml">
+    <Files>
+      <File FileName="Data/LoginData.cs" Line="126" Column="1" />
+      <File FileName="Models/User.cs" Line="10" Column="1" />
+      <File FileName="Models/ErrorViewModel.cs" Line="1" Column="1" />
+      <File FileName="Controllers/LoginController.cs" Line="31" Column="1" />
+      <File FileName="Views/Home/Index.cshtml" Line="72" Column="25" />
+      <File FileName="Views/Login/Index.cshtml" Line="22" Column="45" />
+      <File FileName="Views/_ViewImports.cshtml" Line="1" Column="1" />
+      <File FileName="appsettings.Development.json" Line="1" Column="1" />
+      <File FileName="appsettings.json" Line="1" Column="1" />
+      <File FileName="Controllers/HomeController.cs" Line="116" Column="21" />
+      <File FileName=".editorconfig" Line="1" Column="1" />
+      <File FileName="Program.cs" Line="27" Column="1" />
+      <File FileName="Views/_ViewStart.cshtml" Line="1" Column="1" />
+      <File FileName="wwwroot/css/site.css" Line="15" Column="1" />
+      <File FileName="wwwroot/EmptyClass.cs" Line="1" Column="1" />
+      <File FileName="Views/Shared/_Layout.cshtml" Line="13" Column="94" />
+      <File FileName="Data/HashPassword.cs" Line="10" Column="1" />
+      <File FileName="Controllers/UserCartController.cs" Line="17" Column="12" />
+      <File FileName="Views/UserCart/Index.cshtml" Line="181" Column="38" />
+      <File FileName="Controllers/PurchaseController.cs" Line="26" Column="12" />
+      <File FileName="Views/Purchase/Index.cshtml" Line="209" Column="1" />
+      <File FileName="Views/Shared/_ValidationScriptsPartial.cshtml" Line="1" Column="1" />
+      <File FileName="Controllers/LogoutController.cs" Line="26" Column="18" />
+      <File FileName="Models/Product.cs" Line="14" Column="1" />
+      <File FileName="Data/ProductData.cs" Line="87" Column="1" />
+      <File FileName="Views/Home/Search.cshtml" Line="76" Column="25" />
+      <File FileName="Views/Home/AddToCart.cshtml" Line="8" Column="9" />
+      <File FileName="wwwroot/js/site.js" Line="31" Column="20" />
+      <File FileName="Views/Shared/Error.cshtml" Line="1" Column="1" />
+      <File FileName="Models/button.cs" Line="1" Column="1" />
+      <File FileName="wwwroot/css/Cart.css" Line="301" Column="1" />
+      <File FileName="Models/Cart.cs" Line="12" Column="1" />
+      <File FileName="Models/PurchaseHistory.cs" Line="13" Column="29" />
+      <File FileName="Data/PurchaseData.cs" Line="137" Column="14" />
+      <File FileName="Data/Data.cs" Line="7" Column="173" />
+      <File FileName="Data/RatingData.cs" Line="77" Column="36" />
+      <File FileName="Controllers/RatingController.cs" Line="21" Column="1" />
+      <File FileName="Models/AvgRating.cs" Line="4" Column="41" />
+      <File FileName="Models/Rating.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CA_Team5" expanded="True">
+            <Node name="CA_Team5" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True">
+                  <Node name="Search.cshtml" selected="True" />
+                </Node>
+                <Node name="Login" expanded="True" />
+                <Node name="Purchase" expanded="True" />
+                <Node name="Shared" expanded="True" />
+                <Node name="UserCart" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="css" expanded="True" />
+                <Node name="js" expanded="True" />
+              </Node>
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>CookieBuilder</Value>
+          <Value>cookie</Value>
+          <Value>Guid.tostring</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.CA__Team5 PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+</Properties>

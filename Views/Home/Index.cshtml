@@ -1,0 +1,269 @@
+﻿@{var user = (User)ViewData["user"];
+    var products = (List<Product>)ViewData["products"];
+    var avg = (Dictionary<string,int>)ViewData["avg"];
+    @*int count = (int)ViewData["count"];*@
+
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 33%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+.media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+               
+
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        
+                       <h3>Products</h3>
+
+                    </ul>
+                   @* <span id="cart_count"></span>
+                    <a href="@Url.Action("Index", "UserCart")">
+                        <img src="cart.png" width="50" height="50" />
+                    </a>*@
+                </div>
+            </div>
+        </nav>
+      @*  <form action="/Home/Search">
+            <input type="text" name="text" size="50" maxlength="100" />
+            <input type="submit" value="Search" />
+        </form>*@
+
+
+        </br>
+
+        
+    </header>
+
+
+    @*<div class="productrow">*@
+
+       
+     <div class="row pb-3">
+      
+
+      
+       @{int count = 0; }
+        @foreach (var product in products)
+        {
+      <div class="col-lg-4 col-md-6">
+      <div class="row p-2">
+      <div class="productcard p-3 col-12 p-1"  style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+        <div style="text-align: center;"> <img class="center" src="@product.Image" width="200" height="200" /></div>
+      
+        <div class="card-body">
+          <h5 class="card-title">@product.ProductName</h5>
+          <h6 class="card-text" style="height: 50px;">@product.Description</h6>
+          <div class="options d-flex flex-fill">
+                @if (avg.ContainsKey(product.ProductName))
+                    {
+                        <p>
+
+                            @for (int i = 0; i < 5; i++)
+                            {
+
+
+                                if (i < @avg[product.ProductName])
+                                {
+                                    <i class="avgstar fa fa-star"></i>
+                                }
+                                if (i >= @avg[product.ProductName])
+                                {
+                                    <i class="fa fa-star"></i>
+                                }
+
+
+
+                            }
+                        </p>
+                            }
+                            @if (!avg.ContainsKey(product.ProductName))
+                            {
+                            <p>No Rating!</p>
+                             }
+          </div>
+          <div class="buy d-flex justify-content-between align-items-center">
+            <div class="price text-success"><h5 class="mt-4">$@product.UnitPrice</h5></div>
+             <button type="button" class=" AddtoCartBtn btn btn-danger mt-3" id="@product.ProductId"><i class="fas fa-shopping-cart"></i> Add To Cart</button>
+          </div>
+        
+      </div>
+    </div>
+     </div>
+  </div>
+       count = count + 1;
+        }
+   
+</div>
+
+           @* <div class="column">
+                <div class="card">
+
+                    <img src="@product.Image" width="370" height="400" />
+                    <p>@product.ProductName</p>
+                    <p>@product.Description</p>
+
+                    <button type="button" class="AddtoCartBtn" id="@product.ProductId">$@product.UnitPrice -  </button>*@
+                    @*@if (avg.FirstOrDefault() !=null) {
+            <p>
+                @for(int i = 0; i < 5; i++)
+                    {
+                        if (i < avg.Count())
+                        {
+
+                            if (i < @avg[count].AvgRate && avg[count].AvgRate!=0)
+                            {
+                <i class="avgstar fa fa-star"></i>
+                            }
+                            if (i >= @avg[count].AvgRate && avg[count].AvgRate != 0)
+                            {
+            <i class="fa fa-star"></i>
+                            }
+
+                        }
+
+                    }
+            </p>}
+              @if (avg.FirstOrDefault()==null)
+        {
+            <p>No Review</p>
+        }*@
+                   @* @if (avg.ContainsKey(product.ProductName))
+                    {
+                        <p>
+
+                            @for (int i = 0; i < 5; i++)
+                            {
+
+
+                                if (i < @avg[product.ProductName])
+                                {
+                                    <i class="avgstar fa fa-star"></i>
+                                }
+                                if (i >= @avg[product.ProductName])
+                                {
+                                    <i class="fa fa-star"></i>
+                                }
+
+
+
+                            }
+                        </p>
+                            }
+                            @if (!avg.ContainsKey(product.ProductName))
+                            {
+                            <p>No Rating!</p>
+                             }*@
+                            
+                        @*</div>
+            </div>
+            count = count + 1;
+        }
+
+    </div>*@
+
+    
+    <br />
+    <br />
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script>GetCount();
+        function AddTo(productId) {
+
+
+            $.ajax({
+                type: "POST",
+                url: "/Home/AddToCart?productId=" + productId,
+
+                contentType: "application/json; charset=utf-8",
+
+                success: function (response) {
+                    $("#cart_count").empty().text(response);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+
+        }
+
+
+        function GetCount() {
+            $.ajax({
+                type: "GET",
+                url: "/Home/GetCount",
+
+                contentType: "application/json; charset=utf-8",
+
+                success: function (response) {
+                    $("#cart_count").empty().text(response);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+
+        }</script>
+
+
+
+</body>
+</html>
+
+
